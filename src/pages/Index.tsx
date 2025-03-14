@@ -41,6 +41,56 @@ export default Counter;`;
   transform: translateY(-5px);
 }`;
 
+  const pythonExample = `def fibonacci(n):
+    """Generate the Fibonacci sequence up to n"""
+    a, b = 0, 1
+    result = []
+    while a < n:
+        result.append(a)
+        a, b = b, a + b
+    return result
+
+# Print the first 10 Fibonacci numbers
+print(fibonacci(100))`;
+
+  const goExample = `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, Gopher!")
+    
+    // Create a slice of names
+    names := []string{"Alice", "Bob", "Charlie"}
+    
+    // Iterate through the slice
+    for _, name := range names {
+        fmt.Printf("Hello, %s!\n", name)
+    }
+}`;
+
+  const typescriptExample = `interface User {
+  id: number;
+  name: string;
+  email: string;
+  isActive: boolean;
+}
+
+function createUser(user: User): User {
+  // Validate user
+  if (!user.email.includes('@')) {
+    throw new Error('Invalid email address');
+  }
+  
+  // In a real app, this would talk to a database
+  console.log('Creating user:', user.name);
+  
+  return {
+    ...user,
+    isActive: true
+  };
+}`;
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8 md:p-12 lg:p-16">
       <div className="max-w-4xl mx-auto">
@@ -49,7 +99,7 @@ export default Counter;`;
           <h1 className="text-4xl font-bold mt-2 mb-4">Vercel Style Code Block</h1>
           <p className="text-gray-600 text-lg">
             A beautifully designed code block component inspired by Vercel's v0.dev design aesthetic.
-            Complete with syntax highlighting, line numbers, and a copy button.
+            Complete with syntax highlighting, line numbers, and a copy button. Now with support for multiple programming languages!
           </p>
         </div>
 
@@ -74,7 +124,34 @@ export default Counter;`;
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold mb-4">Without Filename</h2>
+            <h2 className="text-2xl font-semibold mb-4">Python Example</h2>
+            <VercelStyleCodeBlock 
+              code={pythonExample} 
+              filename="fibonacci.py" 
+              language="python"
+            />
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Go Example</h2>
+            <VercelStyleCodeBlock 
+              code={goExample} 
+              filename="main.go" 
+              language="go"
+            />
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">TypeScript Example</h2>
+            <VercelStyleCodeBlock 
+              code={typescriptExample} 
+              filename="user.ts" 
+              language="typescript"
+            />
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold mb-4">Without Filename (Language Only)</h2>
             <VercelStyleCodeBlock 
               code="console.log('Hello, world!');" 
               language="javascript"
